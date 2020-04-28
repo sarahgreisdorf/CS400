@@ -1,0 +1,42 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    {{ title }}
+  </h1>
+</div>
+
+
+<div>
+
+  <ul>
+    <li *ngFor="let place of places">
+      <section class="section">
+        <div class="container">
+          <div class="columns">
+            <div class="column is-offset-4 is-4">
+
+              <div class="box">
+                <article class="media">
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        <span class="title">{{place.name}}</span>
+                        <br>
+                        <span class="subtitle">{{place.temperature}}° F</span>
+                        <br> {{place.description}}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </li>
+  </ul>
+
+</div>
+
+
