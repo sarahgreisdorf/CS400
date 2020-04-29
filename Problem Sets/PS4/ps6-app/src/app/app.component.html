@@ -1,42 +1,35 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    {{ title }}
-  </h1>
+<h2>Today's Weather</h2>
+
+  <!--<label>City </label> <input type="text" [formControl]="city">
+  <button (click)="getWeather()">Get weather</button>
+
+<ul>
+  <li *ngFor="let wx of weather">
+    {{wx.temp}} degrees
+  </li>
+
+</ul> -->
+
+
+<form [formGroup]="location" >
+  <div class = "form-group">
+      <input type="text" [formControl]= "cityName" required minlength="1" formControlName = "formHere"/>
+  </div>
+  <div class="text-center">
+    <button (click) = "getWeather()">Get Weather</button>
+  </div>
+</form>
+
+
+
+<p> The weather is: {{weather}} </p>
+
+<div *ngIf="cityName.errors.required">
+  Inputting a city is required
 </div>
 
-
-<div>
-
-  <ul>
-    <li *ngFor="let place of places">
-      <section class="section">
-        <div class="container">
-          <div class="columns">
-            <div class="column is-offset-4 is-4">
-
-              <div class="box">
-                <article class="media">
-                  <div class="media-content">
-                    <div class="content">
-                      <p>
-                        <span class="title">{{place.name}}</span>
-                        <br>
-                        <span class="subtitle">{{place.temperature}}° F</span>
-                        <br> {{place.description}}
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
-    </li>
-  </ul>
-
+<div *ngIf="cityName.errors.minlength">
+  Name must be at least 1 character long.
 </div>
 
 

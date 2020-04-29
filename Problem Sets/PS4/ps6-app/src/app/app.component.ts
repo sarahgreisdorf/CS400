@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { PLACES} from "./PLACES-MOCK";
-import {PLACE} from './PLACE'
+import { WeatherService } from './services/weather.service'
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +8,26 @@ import {PLACE} from './PLACE'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Weather';
-  places = PLACES;
-  private selectedContact: PLACE;
+  title = 'Weather App';
+  weather: any;
 
-  selectContact(place: PLACE) {
-    this.selectedContact = place;
+  cityName: FormControl = new FormControl('');
 
+  constructor(private wx: WeatherService, private form: FormBuilder) {
+  }
+
+  location = this.form.group({
+    cityName: [''],
+  })
+
+  getWeather() {
+    this.cityName.setValue('Name');
+
+    this.wx.getWeather().subscribe(
+      response => {
+        this.weather = response['main']['temp'];
+      }
+
+    )
   }
 }
